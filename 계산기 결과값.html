@@ -1,0 +1,31 @@
+<script>
+    document.querySelector('#calculate').addEventListener('click', () => {
+      if(numTwo){
+        switch(operator) {
+            case '+':
+                $result.value = parseInt(numOne) + parseInt(numTwo);
+                break;
+            case '-':
+                $result.value = parseInt(numOne) - parseInt(numTwo);
+                break;
+            case '*':
+                $result.value = parseInt(numOne) * parseInt(numTwo);
+                break;
+            case '/':
+                $result.value = parseInt(numOne) / parseInt(numTwo);
+                break;
+            default:
+                break;
+        }
+      }else {
+          alert('숫자를 먼저 입력하시오.');
+      }
+    });
+    document.querySelector('#clear').addEventListener('click', () => {
+  numOne = '';
+  operator = '';
+  numTwo = '';
+  $operator.value = '';
+  $result.value = '';
+});
+</script>
