@@ -1,21 +1,21 @@
 <script>
-    const onClickNumber = (event) => {
+    // const onClickNumber = (event) => {
         
-          if(operator) {
-              if(!numTwo) {
-                  $result.value = '';
-              }
-           numTwo += event.target.textContent;
-          }else {
-            numOne += event.target.textContent;
-          }
-          $result.value += event.target.textContent;
+    //       if(operator) {
+    //           if(!numTwo) {
+    //               $result.value = '';
+    //           }
+    //        numTwo += event.target.textContent;
+    //       }else {
+    //         numOne += event.target.textContent;
+    //       }
+    //       $result.value += event.target.textContent;
         
-       };
-       document.querySelector('#num-0').addEventListener('click',onClickNumber)
-    ----------------------------------------------------------------------------------
+    //    };
+    //    document.querySelector('#num-0').addEventListener('click',onClickNumber)
+    //----------------------------------------------------------------------------------
 
-    if문 중첩 줄이기
+    //if문 중첩 줄이기
     const onClickNumber = (event) => {
         
           if(!operator) {
@@ -33,7 +33,7 @@
         
        };
        document.querySelector('#num-0').addEventListener('click',onClickNumber)
-    ----------------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------------------
 
     function test() { 
   let result = ''; 
