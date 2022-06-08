@@ -43,15 +43,28 @@
           return true;
       }//검사하는 코드
 
-        $form.addEventListener('submit', (event) => {
+        $form.addEventListener('submit', (event) => { 
             event.preventDefault();
             const value = $input.value; // event.target[0].value;도 가능함
             $input.value = '';
             if (checkInput(value)) {
                 //입력값 문제없음
+              if(answer.join('') === value) {  //[3,1,4,6] -> '3146'
+                  $log.textContent = '홈런!';
+                  return;
+              }
+              if (tries.length >= 9) {
+                
+                  const message = document.createTextNode(`패배! 정답은 ${answer.join('')}`);
+                  $logs.appendChild(message);
+                  return;
+              }
+              //몇 스트라이크 몇 볼인지 검사
             }else {
                 //에러있음
             }
+            tries.push(value);
+            
         });
     </script>
     </body>
