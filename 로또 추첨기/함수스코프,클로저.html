@@ -1,0 +1,14 @@
+<script>
+    function b() {
+        var a = 1;
+    }
+    console.log(a); //이것은 에러가 발생합니다. a는 함수 안에서 선언된 변수 이므로 함수 바깥에서 접급할 수 없습니다.
+    // 이렇듯 함수를 경계로 접근 여부가 달라지는 것을 함수 스코프 라고 한다.
+    //var와 비동기가 만나면 클로저 문제가 발생한다.
+    for (let i = 0; i < 6; i++) { //여기서 let대신에 var를 쓰면 클로저 문제가 발생한다. addeventlisener이런것에도 문제가
+                                   //발생 할 수 있다.
+            setTimeout(() => {
+                showBall(winBalls[i], $result);
+            }, (i + 1) * 1000);
+        }
+</script>
