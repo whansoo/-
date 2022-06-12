@@ -1,0 +1,16 @@
+<script>
+    // {} === {} 은 다르다
+    // [] === [] 이것도 다르다
+    // (() => {}) === (() => {}) 이것도 다르다.
+    // 같게 하려면 변수에 넣어서 비교하라 
+    //const a = {};
+    //const b = a;
+    // a === b는 같다.
+    const fun = (값) => () => {
+         console.log('고차함수입니다', 값);
+    }
+    const fun1 = func(1);
+    fun1 === fun1;
+    태그.addEventListener('click', fun1);
+    태그.removeEventListener('click', fun1);
+</script>

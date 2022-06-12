@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>가위바위보</title>
+    <style>
+      #computer {
+      width: 142px;
+      height: 200px;
+    }
+    </style>
+</head>
+<body>
+    <div id="computer"></div>
+    <div>
+    <button id="scissors" class="btn">가위</button>
+    <button id="rock" class="btn">바위</button>
+    <button id="paper" class="btn">보</button>
+    </div>
+    <div id="score">0</div>
+    <script>
+    const $computer = document.querySelector('#computer');
+    const $score = document.querySelector('#score');
+    const $rock = document.querySelector('#rock');
+    const $scissors = document.querySelector('#scissors');
+    const $paper = document.querySelector('#paper');
+    const IMG_URL = './rsp.png';
+    $computer.style.background = `url(${IMG_URL}) 0 0`;
+    $computer.style.backgroundSize = 'auto 200px';
+
+    const rspX = {
+        scissors: '0', //가위
+        rock: '-220px', //바위
+        paper: '-440px' //보
+    };
+     let computerChoice = rspX.scissors;
+    const rsp = (number) => {
+        if(computerChoice === rspX.scissors) { //가위 일 때 바위로 바꿔라 
+          number = rspX.rock
+        }else if (computerChoice === rspX.rock) { //바위 일 때 보로 바꿔라
+            number = rspX.paper
+        }else if (computerChoice === rspX.paper){      //보 일 때 가위로 바꿔라
+            number = rspX.scissors
+        }
+        computerChoice = number;
+        $computer.style.background = `url(${IMG_URL}) ${number} 0`;
+        $computer.style.backgroundSize = 'auto 200px';
+    }
+   
+   
+
+    let intervalId = setInterval(rsp, 50);
+    let clickable = true;
+    let score = 0;
+    let message;
+    const clickButton = () => {
+        if(clickable) {
+            clearInterval(intervalId);
+            clickable = false;
+            //점수 계산 및 화면 표시
+            const myChoice = event.target.textContent === '바위'
+              ? rspX.rock
+              : event.target.textContent === '가위'
+                ? rspX.scissors
+                : rspX.paper;
+                if (myChoice === rspX.rock) {
+      if (computerChoice === rspX.rock) {
+        message = '무승부';
+      } else if (computerChoice === rspX.scissors) {
+        score += 1;
+        message = '승리';
+      } else if (computerChoice === rspX.paper) {
+        score -= 1;
+        message = '패배';
+      }
+    } else if (myChoice === rspX.scissors) {
+      if (computerChoice === rspX.rock) {
+        score -= 1;
+        message = '패배';
+      } else if (computerChoice === rspX.scissors) {
+        message = '무승부';
+      } else if (computerChoice === rspX.paper) {
+        score += 1;
+        message = '승리';
+      }
+    } else if (myChoice === rspX.paper) {
+      if (computerChoice === rspX.rock) {
+        score += 1;
+        message = '승리';
+      } else if (computerChoice === rspX.scissors) {
+        score -= 1;
+        message = '패배';
+      } else if (computerChoice === rspX.paper) {
+        message = '무승부';
+      }
+    }
+    $score.textContent = `${message} 총: ${score}점`;
+            setTimeout(() => {
+                clickable = true;
+                intervalId = setInterval(rsp, 50);
+            }, 1000)
+        }
+    }
+    $rock.addEventListener('click', clickButton);
+    $scissors.addEventListener('click', clickButton);
+    $paper.addEventListener('click', clickButton);
+       //clickButton 5번 호출, 인터벌 1번, 2번, 3번, 4번, 5번(애만 intervalId)
+    //그 다음에 버튼을 클릭하면 5번만 취소
+    // const clickButton = () => {
+    //     clearInterval(intervalId);
+    //     //점수 계산 및 화면 표시
+    //     setTimeout(() => {
+    //         //1초 후에 실행된다
+    //         clearInterval(intervalId);
+    //         intervalId = setInterval(rsp, 50)
+    //     }, 1000);
+    // };
+    
+    </script>
+</body>
+</html>

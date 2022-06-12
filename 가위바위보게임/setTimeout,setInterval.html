@@ -1,0 +1,12 @@
+<script>
+    //setInterval은 최대한 간격이 1초 일려고 노력은 한다 setInterval도 안에 코드가 많으면 1초 보장이 어렵지만 최대한 그 간격에 맞추려고 노력은 한다
+    setInterval(() => {
+        console.log('hello');
+    }, 1000);
+//위에랑 아래랑 같은 거임 재귀 함수라고 한다. 사실 약간 다르다 아래는 consol.log가 끝나고 setTimeout이 실행 되기 때문에 setTimeout은 1초 보장을 하려는 노력조차 하지 않는다.
+    function hello() {
+        console.log('hello');
+        setTimeout(hello, 1000);
+    }
+    setTimeout(hello, 1000);
+</script>

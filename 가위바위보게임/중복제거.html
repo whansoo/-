@@ -1,0 +1,82 @@
+<script>
+    let computerChoice = 'scissors';
+    setInterval(() => {
+        if(computerChoice === 'scissors') { //가위 일 때 바위로 바꿔라 
+            computerChoice = 'rock';
+            $computer.style.background = `url(${IMG_URL}) ${rspX.rock} 0`;
+            $computer.style.backgroundSize = 'auto 200px';
+        }else if (computerChoice === 'rock') { //바위 일 때 보로 바꿔라
+            computerChoice = 'paper';
+            $computer.style.background = `url(${IMG_URL}) ${rspX.paper} 0`;
+            $computer.style.backgroundSize = 'auto 200px';
+        }else if (computerChoice === 'paper'){      //보 일 때 가위로 바꿔라
+            computerChoice = 'scissors';
+            $computer.style.background = `url(${IMG_URL}) ${rspX.scissors} 0`;
+            $computer.style.backgroundSize = 'auto 200px';
+        }
+    }, 50);
+    //따로 중복 빼주기
+    let computerChoice1 = 'scissors';
+    setInterval(() => {
+        if(computerChoice === 'scissors') { //가위 일 때 바위로 바꿔라 
+            computerChoice = 'rock';
+            
+        }else if (computerChoice === 'rock') { //바위 일 때 보로 바꿔라
+            computerChoice = 'paper';
+            
+        }else if (computerChoice === 'paper'){      //보 일 때 가위로 바꿔라
+            computerChoice = 'scissors';
+           
+        }
+            $computer.style.background = `url(${IMG_URL}) ${rspX[computerChoice]} 0`;
+         $computer.style.backgroundSize = 'auto 200px';
+    }, 50);
+    //함수를 사용하여 중복 제거
+    let computerChoice3 = rspX.scissors;
+    const rsp = (number) => {
+        computerChoice = number;
+        $computer.style.background = `url(${IMG_URL}) ${number} 0`;
+        $computer.style.backgroundSize = 'auto 200px';
+    }
+    setInterval(() => {
+        if(computerChoice === rspX.scissors) { //가위 일 때 바위로 바꿔라 
+           rsp(rspX.rock)
+        }else if (computerChoice === rspX.rock) { //바위 일 때 보로 바꿔라
+            rsp(rspX.paper)
+        }else if (computerChoice === rspX.paper){      //보 일 때 가위로 바꿔라
+            rsp(rspX.scissors)
+        }
+    }, 50);
+
+    let computerChoice4 = rspX.scissors;
+    const changeComputerHand = () => {
+        if(computerChoice === 'scissors') { //가위 일 때 바위로 바꿔라 
+            computerChoice = 'rock';
+            
+        }else if (computerChoice === 'rock') { //바위 일 때 보로 바꿔라
+            computerChoice = 'paper';
+            
+        }else if (computerChoice === 'paper'){      //보 일 때 가위로 바꿔라
+            computerChoice = 'scissors';
+           
+        }
+            $computer.style.background = `url(${IMG_URL}) ${rspX[computerChoice]} 0`;
+         $computer.style.backgroundSize = 'auto 200px';
+    }
+    setInterval(changeComputerHand, 50);
+
+    let intervalId = set(changeComputerHand, 50);
+
+    const clickButton = () => {
+        clearInterval(intervalId);
+        //점수 계산 및 화면 표시
+        setTimeout(() => {
+            intervalId = setInterval(changeComputerHand, 50)
+        }, 1000);
+    };
+    $rock.addEventListenner('click', clickButton);
+    $scissors.addEventListenner('click', clickButton);
+    $paper.addEventListenner('click', clickButton);
+
+
+</script>
